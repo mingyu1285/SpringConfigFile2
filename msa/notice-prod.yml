@@ -5,16 +5,17 @@ management:
         include: '*'
   endpoint:
     health:
-      enabled: true
+      enabled: 'true'
       show-details: always
     beans:
-      enabled: true
+      enabled: 'true'
     info:
-      enabled: true
+      enabled: 'true'
     shutdown:
       enabled: true
   server:
-    port: ${NOTICE-SERVICE-ACTUATOR}
+    address: localhost
+    port: '12001'
 spring:
   jpa:
     generate-ddl: 'false'
@@ -31,26 +32,26 @@ spring:
     open-in-view: 'false'
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    password: ${MARIADB-PASSWORD}
-    username: ${MARIADB-USER}
-    url: jdbc:mariadb://${MARIADB-IP}:${MARIADB-PORT}/myDB
+    password: '1234'
+    username: poly
+    url: jdbc:mariadb://192.168.85.128:3306/myDB
   application:
     name: NOTICE-SERVICE
   boot:
     admin:
       client: # Spring Boot Actuator Admin UI Server
-        url: http://${ADMIN-MANAGER-IP}:${ADMIN-MANAGER-PORT}
+        url: http://localhost:15000
 jwt:
   token:
     access:
-      name: 'jwtAccessToken'
+      name: jwtAccessToken
 eureka:
   client:
     fetch-registry: 'true'
     register-with-eureka: 'true'
     service-url:
-      defaultZone: http://${EUREKA-SERVICE-IP}:${EUREKA-SERVICE-PORT}/eureka
+      defaultZone: http://localhost:8761/eureka
 server:
-  port: ${NOTICE-SERVICE-PORT}
+  port: '12000'
 api:
-  gateway: ${API-GATEWAY-IP}:${API-GATEWAY-PORT}
+  gateway: localhost:11000
